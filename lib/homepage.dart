@@ -13,7 +13,6 @@ class _HomePageState extends State<HomePage> implements CurrencyListViewContract
   CurrencyListPresenter _presenter;
   List<Currency> _currencies;
   bool _isLoading;
-  List<MaterialColor> _colors = [Colors.teal, Colors.indigo, Colors.pink];
 
   _HomePageState() {
     _presenter = new CurrencyListPresenter(this);
@@ -32,12 +31,12 @@ class _HomePageState extends State<HomePage> implements CurrencyListViewContract
     return new Scaffold(
       appBar: new AppBar(
         centerTitle: true,
-        title: new Text('BitWallet'),
+        title: new Text('Market'),
       ),
       body: _isLoading ? new Center(
         child: new CircularProgressIndicator(), 
       )
-      : _currencyWidget()
+      : _currencyWidget(),
     );
   }
 
@@ -50,9 +49,8 @@ class _HomePageState extends State<HomePage> implements CurrencyListViewContract
               itemCount: _currencies.length,
               itemBuilder: (BuildContext context, int index) {
                 final Currency currency = _currencies[index];
-                final MaterialColor color = _colors[index % _colors.length];
 
-                return _getListItemUI(currency, color);
+                return _getListItemUI(currency);
               },
             ),
           )
@@ -61,16 +59,13 @@ class _HomePageState extends State<HomePage> implements CurrencyListViewContract
     );
   }
 
-  ListTile _getListItemUI(Currency currency, MaterialColor color) {
+  ListTile _getListItemUI(Currency currency) {
     return new ListTile(
       title: new Text(currency.name,
           style: new TextStyle(fontWeight: FontWeight.bold)),
           subtitle: _getSubtitleText(currency.priceUSD, currency.percentChange1h),
       
-      leading: new CircleAvatar(
-        backgroundColor: color,
-        child: new Text(currency.name[0]),
-      ),
+      leading: new Image.asset("assets/icons/${currency.symbol.toLowerCase()}.png", fit: BoxFit.fitWidth),
       isThreeLine: true,
     );
   }

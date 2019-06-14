@@ -1,16 +1,22 @@
 // Model class for the currency
 class Currency {
   String name;
+  String symbol;
   String priceUSD;
   String percentChange1h;
+  String percentChange24h;
+  String percentChange7d;
 
-  Currency({this.name, this.priceUSD, this.percentChange1h}); //Constructor
+  Currency({this.name, this.symbol, this.priceUSD, this.percentChange1h, this.percentChange24h, this.percentChange7d}); //Constructor
 
 
   Currency.fromMap(Map<String,dynamic> map)
   : name=map['name'],
+    symbol=map['symbol'],
     priceUSD = map['price_usd'],
-    percentChange1h = map['percent_change_1h'];
+    percentChange1h = map['percent_change_1h'],
+    percentChange24h = map['percent_change_24h'],
+    percentChange7d = map['percent_change_7d'];
 }
 
 
