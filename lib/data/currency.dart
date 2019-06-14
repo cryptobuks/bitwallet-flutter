@@ -2,7 +2,7 @@
 class Currency {
   String name;
   String symbol;
-  String priceUSD;
+  double priceUSD;
   String percentChange1h;
   String percentChange24h;
   String percentChange7d;
@@ -11,9 +11,9 @@ class Currency {
 
 
   Currency.fromMap(Map<String,dynamic> map)
-  : name=map['name'],
-    symbol=map['symbol'],
-    priceUSD = map['price_usd'],
+  : name = map['name'],
+    symbol = map['symbol'],
+    priceUSD = double.parse(map['price_usd']),
     percentChange1h = map['percent_change_1h'],
     percentChange24h = map['percent_change_24h'],
     percentChange7d = map['percent_change_7d'];
