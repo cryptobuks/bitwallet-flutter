@@ -6,8 +6,7 @@ class CurrencyDataRetriever implements ListOfCurrencies {
   String apiURL = 'https://api.coinmarketcap.com/v1/ticker/?limit=50';
   @override 
   Future<List<Currency>> fetchCurrencies() async {
-
-    http.Response response = await http.get(apiURL);
+    http.Response response = await http.get(apiURL);      // Retrieve and decode JSON from API
     final List responseBody = json.decode(response.body);
     final statusCode = response.statusCode;
 

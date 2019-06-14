@@ -1,16 +1,31 @@
+import 'package:bitwallet/data/currency.dart';
+import 'package:bitwallet/modules/presenter.dart';
 import 'package:flutter/material.dart';
 
 
 class HomePage extends StatefulWidget {
-  final List currencies;
-  HomePage(this.currencies);
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  List currencies;
+class _HomePageState extends State<HomePage> implements CurrencyListViewContract{
+  
+  CurrencyListPresenter _presenter;
+  List<Currency> _currencies;
+  bool _isLoading;
   List<MaterialColor> _colors = [Colors.teal, Colors.indigo, Colors.pink];
+
+  _HomePageState() {
+    _presenter = new CurrencyListPresenter(this);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _isLoading = true;
+    _presenter.getCurrencies();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +34,10 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         title: new Text('BitWallet'),
       ),
-      body: _currencyWidget(),
+      body: _isLoading ? new Center(
+        child: new CircularProgressIndicator(), 
+      )
+      : _currencyWidget()
     );
   }
 
@@ -29,9 +47,9 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           new Flexible(
             child: new ListView.builder(
-              itemCount: widget.currencies.length,
+              itemCount: _currencies.length,
               itemBuilder: (BuildContext context, int index) {
-                final Map currency = widget.currencies[index];
+                final Currency currency = _currencies[index];
                 final MaterialColor color = _colors[index % _colors.length];
 
                 return _getListItemUI(currency, color);
@@ -43,15 +61,15 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  ListTile _getListItemUI(Map currency, MaterialColor color) {
+  ListTile _getListItemUI(Currency currency, MaterialColor color) {
     return new ListTile(
-      title: new Text(currency['name'],
+      title: new Text(currency.name,
           style: new TextStyle(fontWeight: FontWeight.bold)),
-          subtitle: _getSubtitleText(currency['price_usd'], currency['percent_change_1h']),
+          subtitle: _getSubtitleText(currency.priceUSD, currency.percentChange1h),
       
       leading: new CircleAvatar(
         backgroundColor: color,
-        child: new Text(currency['name'][0]),
+        child: new Text(currency.name[0]),
       ),
       isThreeLine: true,
     );
@@ -79,6 +97,18 @@ class _HomePageState extends State<HomePage> {
       ),
     );
 
+  }
+
+  @override
+  void onLoadComplete(List<Currency> currencies) {
+    setState(() {
+      _currencies = currencies;
+      _isLoading = false;
+    });
+  }
+
+  @override
+  void onLoadError() {
   }
 
 
