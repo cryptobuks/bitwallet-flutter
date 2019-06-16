@@ -33,15 +33,15 @@ class _MarketPageState extends State<MarketPage> implements CurrencyListViewCont
         child: new CircularProgressIndicator(), 
       )
       :
-      new Flexible(
-        child: new Container(
-          color: Theme.Colors.currencyPageBackground,
-          child: new ListView.builder(
-            itemCount: _currencies.length,
-            itemBuilder: (BuildContext context, int index) => new CurrencyCards(_currencies[index]),
-          ),
+
+      new Container(
+        color: Theme.Colors.currencyPageBackground,
+        child: new ListView.builder(
+          itemCount: _currencies.length,
+          itemBuilder: (BuildContext context, int index) => new CurrencyCards(_currencies[index]),
         ),
       );
+
   }
 
 

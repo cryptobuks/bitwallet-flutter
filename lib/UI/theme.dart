@@ -10,10 +10,11 @@ class Colors {
   static const Color appBarDetailBackground = const Color(0x00FFFFFF);
   static const Color appBarGradientStart = const Color(0xFF2e3440);
   static const Color appBarGradientEnd = const Color(0xFF3b4252);
+  static const Color appBarFocused = const Color(0xFF81a1c1);
+  static const Color appBarUnfocused = const Color(0xFFeceff4);
 
-  //static const Color currencyCard = const Color(0xFF434273);
+  
   static const Color currencyCard = const Color(0xFF3b4252);
-  //static const Color currencyListBackground = const Color(0xFF3E3963);
   static const Color currencyPageBackground = const Color(0xFF4c566a);
   static const Color currencyTitle = const Color(0xFFFFFFFF);
   static const Color currencyPercentUp = const Color(0xFFa3be8c);
