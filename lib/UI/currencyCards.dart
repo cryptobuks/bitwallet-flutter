@@ -37,7 +37,7 @@ class CurrencyCards extends StatelessWidget {
       ),
       // CURRENCY TEXT
       child: new Container(
-        margin: const EdgeInsets.only(top: 16.0, left: 52.0),
+        margin: const EdgeInsets.only(top: 16.0, left: 72.0),
         constraints: new BoxConstraints.expand(),
         child: new Column(
           crossAxisAlignment: CrossAxisAlignment.start,

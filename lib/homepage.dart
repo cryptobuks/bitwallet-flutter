@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'pages/market.dart';
 import 'pages/portfolio.dart';
 //import 'UI/gradient_appbar.dart';
@@ -22,46 +23,31 @@ class _HomePageState extends State<HomePage> {
       length: 2,
       initialIndex: 0,
       child: Scaffold(
-        body: TabBarView(
-          children: pages,
-        ),
-        bottomNavigationBar: Container(
-          // decoration: BoxDecoration(
-          //   boxShadow: [
-          //     BoxShadow(
-          //       offset: Offset(10, 10)
-          //     )
-          //   ]
-          // ),
-          margin: EdgeInsets.only(bottom: 20),
-          child: new TabBar(
+        drawer: new Drawer(),
+        appBar: AppBar(
+          title: Text('Markets'), // TODO: Automatically change the title based on which page that is viewed
+          bottom: PreferredSize(
+            preferredSize: Size(double.infinity, 26),
+            child: TabBar(
             tabs: [
               Tab(
                 icon: Icon(Icons.show_chart),
               ),
               Tab(
-                icon: Icon(Icons.assessment),
+                icon: Icon(Icons.person),
               ),
             ],
             unselectedLabelColor: Theme.Colors.appBarUnfocused,
             labelColor: Theme.Colors.appBarFocused,
             indicatorColor: Theme.Colors.appBarFocused,
           ),
+          )
+        ),
+        body: TabBarView(
+          children: pages,
         ),
         backgroundColor: Theme.Colors.currencyCard,
       ),
     );
-
-
-    // return new Material(
-    //   child: new Column(
-    //     children: <Widget>[
-    //     new GradientAppBar('BitWallet'),    
-    //     new MarketPage(),
-    //     new NavBar(),
-        
-    //   ],
-    //   ),
-    // );
   }
 }
