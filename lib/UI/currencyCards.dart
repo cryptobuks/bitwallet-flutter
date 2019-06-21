@@ -64,7 +64,7 @@ class CurrencyCards extends StatelessWidget {
       margin: const EdgeInsets.only(top: 16.0, bottom: 8.0),
       child: new FlatButton(
         onPressed: () {
-          //TODO: Do something
+          //TODO: Redirect to market page for the specific currency.
         },
         child: new Stack(
           children: <Widget>[
@@ -100,11 +100,4 @@ Widget _getSubtitleText(Currency currency) {
 
   }
 
-  // _navigateTo(context, String id) {
-  //   Routes.navigateTo(
-  //     context,
-  //     '/detail/${currency.id}',
-  //     transition: TransitionType.fadeIn
-  //   );
-  // }
 }

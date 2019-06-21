@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         accentColor: Theme.Colors.appBarFocused,
         
       ),
-      home: new HomePage(),
+      home: HomePage(),
       
     );
   }

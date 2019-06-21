@@ -12,11 +12,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List<Widget> pages = [
-    MarketPage(),
     PortfolioPage(),
+    MarketPage(),
   ];
 
+
   // Build the homepage, defaults to marketpage for now
+  // Implement TabController instead of DefaultTabController
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -25,16 +27,18 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         drawer: new Drawer(),
         appBar: AppBar(
-          title: Text('Markets'), // TODO: Automatically change the title based on which page that is viewed
+          //title: Text('Portfolio'), 
           bottom: PreferredSize(
             preferredSize: Size(double.infinity, 26),
             child: TabBar(
             tabs: [
               Tab(
-                icon: Icon(Icons.show_chart),
+                //text: 'Markets',
+                icon: Icon(Icons.person),
               ),
               Tab(
-                icon: Icon(Icons.person),
+                //text: 'Portfolio',
+                icon: Icon(Icons.show_chart),
               ),
             ],
             unselectedLabelColor: Theme.Colors.appBarUnfocused,
@@ -50,4 +54,10 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+}
+
+class PageTabs {
+  final String title;
+  final Icon icon;
+  PageTabs({this.title, this.icon});
 }
