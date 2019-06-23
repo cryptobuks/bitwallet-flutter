@@ -43,7 +43,7 @@ class TextStyles {
     color: Colors.currencyTitle,
     fontFamily: 'Poppins',
     fontWeight: FontWeight.w600,
-    fontSize: 24.0
+    fontSize: 22.0
   );
 
 }

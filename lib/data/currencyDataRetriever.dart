@@ -3,7 +3,7 @@ import 'package:bitwallet/data/currency.dart';
 import 'dart:convert';
 
 class CurrencyDataRetriever implements ListOfCurrencies {
-  String apiURL = 'https://api.coinmarketcap.com/v1/ticker/?limit=50';
+  String apiURL = 'https://api.coinmarketcap.com/v1/ticker/?limit=10';
   @override 
   Future<List<Currency>> fetchCurrencies() async {
     http.Response response = await http.get(apiURL);      // Retrieve and decode JSON from API
